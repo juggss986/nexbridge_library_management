@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <search string="Book Search">
                     <filter name="is_active" string="Active" domain="[('active', '=', 'True')]" />
+                    <filter name="is_inactive" string="Archived" domain="[('active', '=', 'False')]" />
                 </search>
             </field>
         </record>
