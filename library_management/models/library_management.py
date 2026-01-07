@@ -1,10 +1,11 @@
-from odoo import models, fields, api, _
+from odoo import models, fields, api, _, exceptions
+import isbnlib
 
 class LibraryManagement(models.Model):
     _name = "library.management"
 
     title = fields.Char(string="Title", required=True)
-    isbn = fields.Integer(
+    isbn = fields.Char(
         string='ISBN',
         help="Unique13-digit code identifying a specific edition of a book or book-like product"
     )
@@ -12,7 +13,7 @@ class LibraryManagement(models.Model):
         string='Date Published',
         default=fields.Date.context_today,
     )
-    publisher_id_id = fields.Many2one(
+    publisher_id = fields.Many2one(
         string='Publisher',
         comodel_name='res.partner',
     )
@@ -26,7 +27,9 @@ class LibraryManagement(models.Model):
         string='Cover',
     )
     
-    
-    
-    
+    active = fields.Boolean(
+        string='Active',
+        default=True
+    )
+
     
