@@ -18,7 +18,7 @@ class LibraryManagement(models.Model):
     )
     
     authors_ids = fields.Many2many(
-        string='authors',
+        string='Authors',
         comodel_name='res.partner',
     )
     
