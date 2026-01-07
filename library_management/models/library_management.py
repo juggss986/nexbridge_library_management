@@ -7,7 +7,7 @@ import isbnlib
 class LibraryManagement(models.Model):
     _name = "library.management"
 
-    title = fields.Char(string="Title", required=True)
+    title = fields.Char(string="Title")
     isbn = fields.Char(
         string='ISBN',
         help="Unique13-digit code identifying a specific edition of a book or book-like product"
@@ -55,16 +55,11 @@ class LibraryManagement(models.Model):
         if 'title' not in vals:
             raise ValidationError("Please provide a book name.")
         
-        # if 'isbn' in vals and vals['isbn']:
-        #     vals['isbn'] = self._validate_isbn(vals['isbn'])
         return super().create(vals)
 
     def write(self, vals):
-        if not self.title:
+        if not vals.get('title', False):
             raise ValidationError("Please provide a book name.")
-
-        # if 'isbn' in vals and vals['isbn']:
-        #     vals['isbn'] = self._validate_isbn(vals['isbn'])
 
         return super().write(vals)
     
