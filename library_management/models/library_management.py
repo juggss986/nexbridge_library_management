@@ -52,14 +52,19 @@ class LibraryManagement(models.Model):
     
     
     def create(self, vals):
-        if 'isbn' in vals and vals['isbn']:
-            vals['isbn'] = self._validate_isbn(vals['isbn'])
+        if 'title' not in vals:
+            raise ValidationError("Please provide a book name.")
+        
+        # if 'isbn' in vals and vals['isbn']:
+        #     vals['isbn'] = self._validate_isbn(vals['isbn'])
         return super().create(vals)
 
     def write(self, vals):
-        if 'isbn' in vals and vals['isbn']:
-            vals['isbn'] = self._validate_isbn(vals['isbn'])
+        if not self.title:
+            raise ValidationError("Please provide a book name.")
 
-        
+        # if 'isbn' in vals and vals['isbn']:
+        #     vals['isbn'] = self._validate_isbn(vals['isbn'])
+
         return super().write(vals)
     
