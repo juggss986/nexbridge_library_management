@@ -37,7 +37,9 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="title" />
+                                <field name="title" 
+                                required="1"
+                                />
                                 <field name="authors_ids" widget="many2many_tags"/>
                                 <field name="publisher_id" />
                                 <field name="date_published" />

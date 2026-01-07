@@ -42,25 +42,33 @@ class LibraryManagement(models.Model):
     def validate_isbn(self):
         for rec in self:
             try:
+                int(rec.isbn)
                 isbn = isbnlib.canonical(rec.isbn)
             except Exception:
-                raise ValidationError("Invalid ISBN format.")
+                raise ValidationError("ISBN must be a digit.")
 
             if not isbnlib.is_isbn13(isbn):
                 raise ValidationError("ISBN must be a valid ISBN-13.")
 
         return True
     
-    
-    def create(self, vals):
-        if 'title' not in vals:
-            raise ValidationError("Please provide a book name.")
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'title' not in vals:
+                raise ValidationError("Please provide a book name.")
+            
+            if 'isbn' not in vals or not vals.get('isbn'):
+                raise ValidationError(f"Please provide an ISBN for {vals.get('title', '')}.")
         
-        return super().create(vals)
+        return super().create(vals_list)
 
     def write(self, vals):
         if 'title' in vals and not vals['title']:
-            raise ValidationError("Please provide a book name.")
+            raise ValidationError("Please provide a book name.")\
+            
+        if 'isbn' in vals and not vals.get('isbn') :
+            raise ValidationError(f"Please provide an ISBN for {self.title or ''}.")
 
         return super().write(vals)
     
