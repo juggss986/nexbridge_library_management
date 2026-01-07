@@ -1,4 +1,7 @@
-from odoo import models, fields, api, _, exceptions
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, ValidationError
+
+
 import isbnlib
 
 class LibraryManagement(models.Model):
@@ -32,4 +35,31 @@ class LibraryManagement(models.Model):
         default=True
     )
 
+    _sql_constraints = [
+    ('isbn_unique', 'unique(isbn)', 'ISBN must be unique.')
+]
+
+    def _validate_isbn(self, isbn):
+        try:
+            isbn = isbnlib.canonical(isbn)
+        except Exception:
+            raise ValidationError("Invalid ISBN format.")
+
+        if not isbnlib.is_isbn13(isbn):
+            raise ValidationError("ISBN must be a valid ISBN-13.")
+
+        return isbn
+    
+    
+    def create(self, vals):
+        if 'isbn' in vals and vals['isbn']:
+            vals['isbn'] = self._validate_isbn(vals['isbn'])
+        return super().create(vals)
+
+    def write(self, vals):
+        if 'isbn' in vals and vals['isbn']:
+            vals['isbn'] = self._validate_isbn(vals['isbn'])
+
+        
+        return super().write(vals)
     
