@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 class LibraryManagement(models.Model):
     _name = "library.management"
 
-    title = fields.Char(string="Title")
+    title = fields.Char(string="Title", required=True)
     isbn = fields.Integer(
         string='ISBN',
         help="Unique13-digit code identifying a specific edition of a book or book-like product"
@@ -21,6 +21,11 @@ class LibraryManagement(models.Model):
         string='Authors',
         comodel_name='res.partner',
     )
+
+    cover_image = fields.Binary(
+        string='Cover',
+    )
+    
     
     
     
