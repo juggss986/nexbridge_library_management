@@ -39,16 +39,17 @@ class LibraryManagement(models.Model):
     ('isbn_unique', 'unique(isbn)', 'ISBN must be unique.')
 ]
 
-    def _validate_isbn(self, isbn):
-        try:
-            isbn = isbnlib.canonical(isbn)
-        except Exception:
-            raise ValidationError("Invalid ISBN format.")
+    def validate_isbn(self):
+        for rec in self:
+            try:
+                isbn = isbnlib.canonical(rec.isbn)
+            except Exception:
+                raise ValidationError("Invalid ISBN format.")
 
-        if not isbnlib.is_isbn13(isbn):
-            raise ValidationError("ISBN must be a valid ISBN-13.")
+            if not isbnlib.is_isbn13(isbn):
+                raise ValidationError("ISBN must be a valid ISBN-13.")
 
-        return isbn
+        return True
     
     
     def create(self, vals):
@@ -58,7 +59,7 @@ class LibraryManagement(models.Model):
         return super().create(vals)
 
     def write(self, vals):
-        if not vals.get('title', False):
+        if 'title' in vals and not vals['title']:
             raise ValidationError("Please provide a book name.")
 
         return super().write(vals)

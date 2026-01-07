@@ -30,6 +30,9 @@
             <field name="model">library.management</field>
             <field name="arch" type="xml">
                 <form string="Library">
+                    <header>
+                        <button name="validate_isbn" type="object" class="oe_highlight" string="Check ISBN"/>
+                    </header>
                     <sheet>
                         <group>
                             <field name="title" />
