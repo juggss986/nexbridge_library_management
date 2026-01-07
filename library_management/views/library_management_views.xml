@@ -36,15 +36,17 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="title" />
-                            <field name="authors_ids" />
-                            <field name="publisher_id" />
-                            <field name="date_published" />
-                        </group>
-                        <group>
-                            <field name="isbn" />
-                            <field name="active" />
-                            <field name="cover_image" />
+                            <group>
+                                <field name="title" />
+                                <field name="authors_ids" />
+                                <field name="publisher_id" />
+                                <field name="date_published" />
+                            </group>
+                            <group>
+                                <field name="isbn" />
+                                <field name="active" />
+                                <field name="cover_image" />
+                                </group>
                         </group>
                     </sheet>
                 </form>
