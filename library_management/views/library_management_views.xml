@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <data>
+
+        <record id="library_management_view_search" model="ir.ui.view">
+            <field name="name">library.management.view.search</field>
+            <field name="model">library.management</field>
+            <field name="arch" type="xml">
+                <search string="Book Search">
+                    <filter name="is_active" string="Active" domain="[('active', '=', 'True')]" />
+                </search>
+            </field>
+        </record>
         
-        
+        <record id="library_management_view_tree" model="ir.ui.view">
+            <field name="name">library.management.view.tree</field>
+            <field name="model">library.management</field>
+            <field name="arch" type="xml">
+                <list string="Library Books">
+                    <field name="title" />
+                    <field name="authors_ids" />
+                    <field name="publisher_id" />
+                    <field name="date_published" />
+                </list>
+            </field>
+        </record>
+
+        <record id="library_management_view_form" model="ir.ui.view">
+            <field name="name">library.management.view.form</field>
+            <field name="model">library.management</field>
+            <field name="arch" type="xml">
+                <form string="Library">
+                    <sheet>
+                        <group>
+                            <field name="title" />
+                            <field name="authors_ids" />
+                            <field name="publisher_id" />
+                            <field name="date_published" />
+                        </group>
+                        <group>
+                            <field name="isbn" />
+                            <field name="active" />
+                            <field name="cover_image" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="library_management_action" model="ir.actions.act_window">
+            <field name="name">Library Books</field>
+            <field name="res_model">library.management</field>
+            <field name="view_mode">list</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
 
         <menuitem
             id="root_library_management_menu"
@@ -11,8 +61,14 @@
             sequence="10"
             web_icon="library_management,static/description/icon.png"
             />
+
+        <menuitem
+            id="library_dashboard_menu"
+            name="Books"
+            parent="root_library_management_menu"
+            action="library_management_action"
+            sequence="10"/>
     
     </data>
-    
 
 </odoo>
