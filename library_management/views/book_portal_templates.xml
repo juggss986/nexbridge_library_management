@@ -2,12 +2,9 @@
 <odoo>
     
     <template id="portal_books" name="Book">
-        <t t-call="portal.frontend_layout">
+        <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
-            <!-- <t t-call="portal.portal_searchbar">
-                <t t-set="title">Books</t>
-            </t> -->
             <div t-if="not books" class="alert alert-warning" role="alert">
                 There are currently no active books in the library.
             </div>
