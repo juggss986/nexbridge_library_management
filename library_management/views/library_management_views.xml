@@ -21,7 +21,7 @@
                     <field name="title" />
                     <field name="authors_ids" widget="many2many_tags"/>
                     <field name="publisher_id" />
-                    <field name="date_published" />
+                    <field name="date_published" widget="date" string="Date Published"/>
                 </list>
             </field>
         </record>
