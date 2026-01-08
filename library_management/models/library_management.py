@@ -6,8 +6,9 @@ import isbnlib
 
 class LibraryManagement(models.Model):
     _name = "library.management"
-
-    title = fields.Char(string="Title")
+    _rec_name = 'title'
+    
+    title = fields.Char(string="Title", required=True)
     isbn = fields.Char(
         string='ISBN',
         help="Unique13-digit code identifying a specific edition of a book or book-like product"
