@@ -9,6 +9,7 @@
     ],
     "data": [
       "views/res_partner_view.xml",
+      "views/partner_books_portal_templates.xml",
     ],
     "installable": True,
     "application": False,

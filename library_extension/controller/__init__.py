@@ -1,0 +1,1 @@
+from . import partner_book_portal

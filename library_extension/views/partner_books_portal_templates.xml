@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <odoo>
+    <template id="partner_portal_books_page" name="Portal Books Page">
+        <t t-call="portal.portal_layout">
+            <t t-set="title">My Books</t>
+
+            <div class="container mt-4">
+                <div class="row">
+                    <t t-foreach="books" t-as="book">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="card h-100 text-center shadow-sm">
+
+                                <!-- Image -->
+                                <div class="pt-3">
+                                    <img t-if="book.cover_image"
+                                         t-att-src="'/web/image/library.management/%s/cover_image' % book.id"
+                                         class="img-fluid rounded"
+                                         style="max-height: 150px; object-fit: contain;"/>
+                                </div>
+
+                                <!-- Name -->
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <t t-esc="book.title"/>
+                                    </h6>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+
+</odoo>
