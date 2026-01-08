@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="library_management_view_form_inherit_library_extension" model="ir.ui.view">
+            <field name="name">library.management.view.form.inherit.library.management</field>
+            <field name="model">library.management</field>
+            <field name="inherit_id" ref="library_management.library_management_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="book_web_like" widget="url"/>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>
