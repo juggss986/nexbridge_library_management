@@ -19,7 +19,7 @@
             <field name="arch" type="xml">
                 <list string="Library Books">
                     <field name="title" />
-                    <field name="authors_ids" />
+                    <field name="authors_ids" widget="many2many_tags"/>
                     <field name="publisher_id" />
                     <field name="date_published" />
                 </list>
@@ -30,7 +30,7 @@
             <field name="name">library.management.view.form</field>
             <field name="model">library.management</field>
             <field name="arch" type="xml">
-                <form string="Library">
+                <form string="Book">
                     <header>
                         <button name="validate_isbn" type="object" class="oe_highlight" string="Check ISBN"/>
                     </header>
@@ -47,8 +47,8 @@
                             <group>
                                 <field name="isbn" />
                                 <field name="active" />
-                                <field name="cover_image" />
-                                </group>
+                                <field name="cover_image" widget="image"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
