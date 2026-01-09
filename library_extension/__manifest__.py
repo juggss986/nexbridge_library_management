@@ -8,6 +8,7 @@
     "images": [
     ],
     "data": [
+      "security/ir.model.access.csv",
       "views/res_partner_view.xml",
       "views/partner_books_portal_templates.xml",
       "views/library_management_views.xml",
